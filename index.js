@@ -8,6 +8,9 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const PORT = 3000
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(express.json());
 
 const mongoose = require('mongoose');
 const Product = require('./models/products')
@@ -20,11 +23,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/shopApp', {useNewUrlParser: true, us
         console.error(err);
     })
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
+app.get('/products', async (req, res) => {
+    const products = await Product.find({})
+    res.render('products/index', { products })
+})
+app.get('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findById(id)
+    res.render('products/product', { product })
 })
 
 app.listen(PORT, ()=> {
