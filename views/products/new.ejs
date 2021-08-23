@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit product</title>
+    <title>New product</title>
 </head>
 <body>
-    <h1>Edit Product Entry</h1>
+    <h1>New Product Entry</h1>
 
-    <form action="/products/<%=product._id%>" method="POST">
+    <form action="/products" method="POST">
         <label for="name">Product name</label>
-        <input type="text" name="name" id="name" value="<%=product.name%>">
+        <input type="text" name="name" id="name" placeholder="Product name">
 
         <label for="price">price £</label>
-        <input type="number" name="price" id="price" placeholder="£0">
+        <input type="number" name="price" id="price" placeholder="0">
 
         <label for="category">Product category</label>
         <select name="category" id="category">

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New product</title>
+    <title>Edit product</title>
 </head>
 <body>
-    <h1>New Product Entry</h1>
+    <h1>Edit Product Entry</h1>
     
     <form action="/products/<%= product._id %>?_method=put" method="POST">
         <label for="name">Product name</label>
@@ -18,9 +18,9 @@
 
         <label for="category">Product category</label>
         <select name="category" id="category"> 
-            <option value="fruit">fruit</option>
-            <option value="vegetable">vegetable</option>
-            <option value="dairy">dairy</option>
+            <option value="fruit" <%= product.category === 'fruit' ? 'selected' : '' %> >fruit</option>
+            <option value="vegetable" <%= product.category === 'vegetable' ? 'selected' : '' %> >vegetable</option>
+            <option value="dairy" <%= product.category === 'dairy' ? 'selected' : '' %> >dairy</option>
         </select>
 
         <button type="submit">Submit</button>

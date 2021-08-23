@@ -50,7 +50,14 @@ app.get('/products/:id', async (req, res) => {
 app.get('/products/:id/edit', async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
-    res.render('products/edit', {product})
+    res.render('products/edit', { product })
+})
+
+app.delete('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    await Product.findByIdAndDelete(id);
+
+    res.redirect('/products')
 })
 
 app.put('/products/:id', async (req, res) => {
