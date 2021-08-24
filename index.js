@@ -67,6 +67,12 @@ app.put('/products/:id', async (req, res) => {
     res.redirect(`/products/${product._id}`)
 })
 
+app.get('/products/category/:category', async (req, res) => {
+    const { category } = req.params;
+    const products = await Product.find({category});
+    res.render('products/category', {products})
+})
+
 app.post('/products', async (req, res) => {
     const newProduct = new Product(req.body);
     await newProduct.save()
